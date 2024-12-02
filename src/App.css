@@ -1,0 +1,137 @@
+/* Reset de margens e preenchimentos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Inclui padding e bordas na largura total */
+}
+
+html, body {
+  height: 100%; /* Garante que o body ocupe 100% da altura da viewport */
+}
+
+body {
+  background-color: #121212; /* Cor de fundo escura */
+  font-family: 'Arial', sans-serif; /* Fonte padrão */
+  color: #ffffff; /* Cor do texto */
+  display: flex; /* Usa flexbox para o body */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  transition: background-color 0.3s, color 0.3s; /* Transição suave para as cores */
+}
+
+.light-mode {
+  background-color: #ffffff; /* Cor de fundo clara */
+  color: #333; /* Cor do texto clara */
+}
+
+.dark-mode {
+  background-color: #121212; /* Cor de fundo escura */
+  color: #ffffff; /* Cor do texto escuro */
+}
+
+.navbar {
+  background-color: #2c2c2c; /* Cor de fundo da navbar */
+  padding: 15px 20px; /* Aumenta o padding para aumentar a altura */
+  border-radius: 10px; /* Bordas arredondadas */
+  margin: 0; /* Margem ao redor da navbar */
+  display: flex; /* Usa flexbox para alinhar os itens */
+  justify-content: space-between; /* Espaço entre os itens e o botão de tema */
+  align-items: center; /* Alinha verticalmente os itens */
+  transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+  width: 95vw; /* Largura total da viewport */
+}
+
+.light-mode .navbar {
+  background-color: #ffffff; /* Cor de fundo da navbar em modo claro */
+  color: #333; /* Cor do texto em modo claro */
+}
+
+.dark-mode .navbar {
+  color: #ffffff; /* Cor do texto em modo escuro */
+}
+
+.navbar ul {
+  list-style-type: none; /* Remove os marcadores da lista */
+  display: flex; /* Alinha os itens em linha */
+  padding: 0; /* Remove padding da lista */
+  margin: 0; /* Remove margem da lista */
+}
+
+.navbar li {
+  margin: 0 15px; /* Espaçamento entre os itens */
+}
+
+.navbar a {
+  color: inherit; /* Herda a cor do texto da navbar */
+  text-decoration: none; /* Remove o sublinhado dos links */
+  padding: 8px 16px; /* Adiciona padding aos links */
+  transition: color 0.3s, background-color 0.3s; /* Transição suave para a cor do texto e fundo */
+  border-radius: 5px; /* Bordas arredondadas */
+  display: inline-block; /* Garante que o link tenha um bloco de exibição */
+  box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
+}
+
+.navbar a:hover {
+  color: #4a90e2; /* Cor do texto ao passar o mouse */
+  background-color: rgba(74, 144, 226, 0.2); /* Cor de fundo ao passar o mouse */
+}
+
+.navbar li::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px; /* Espessura da linha */
+  background: #4a90e2; /* Cor da linha */
+  left: 0;
+  bottom: -5px; /* Distância da linha em relação ao texto */
+  transform: scaleX(0); /* Inicialmente invisível */
+  transition: transform 0.3s ease; /* Transição suave */
+}
+
+.navbar li:hover::after {
+  transform: scaleX(1); /* Mostra a linha ao passar o mouse */
+}
+
+.theme-toggle {
+  background-color: transparent; /* Fundo transparente */
+  color: #4a90e2; /* Cor do texto do botão */
+  border: none; /* Remove borda */
+  cursor: pointer; /* Muda o cursor ao passar o mouse */
+  font-size: 1.5rem; /* Tamanho da fonte para os ícones */
+  transition: color 0.3s; /* Transição suave para a cor */
+}
+
+.theme-toggle:hover {
+  color: #357ABD; /* Cor ao passar o mouse */
+}
+
+/* Estilos para o Hero */
+.hero-container {
+  background-color: #1a1a1a; /* Cor de fundo em modo escuro */
+  transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+.light-mode .hero-container {
+  background-color: #ffffff; /* Cor de fundo em modo claro */
+  color: #333; /* Cor do texto em modo claro */
+}
+
+.dark-mode .hero-container {
+  color: #ffffff; /* Cor do texto em modo escuro */
+}
+
+/* Estilos para Skills */
+.skills-container {
+  background-color: #1a1a1a; /* Cor de fundo em modo escuro */
+  transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+.light-mode .skills-container {
+  background-color: #f4f4f4; /* Cor de fundo em modo claro */
+  color: #333; /* Cor do texto em modo claro */
+}
+
+.dark-mode .skills-container {
+  color: #ffffff; /* Cor do texto em modo escuro */
+}
+

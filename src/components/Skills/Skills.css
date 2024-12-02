@@ -1,0 +1,50 @@
+.skills-container {
+  text-align: center; /* Centraliza o texto */
+  margin: 20px 0; /* Margem acima e abaixo */
+  background: #2c2c2c; /* Cor de fundo em modo escuro */
+  padding: 40px; /* Padding para a seção */
+  border-radius: 10px; /* Bordas arredondadas para a seção */
+  transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+}
+
+.light-mode .skills-container {
+  background-color: #f4f4f4; /* Cor de fundo em modo claro */
+  color: #333; /* Cor do texto em modo claro */
+}
+
+.dark-mode .skills-container {
+  color: #ffffff; /* Cor do texto em modo escuro */
+}
+
+.skills-list {
+  display: flex; /* Alinha os itens em linha */
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  flex-wrap: wrap; /* Permite que os cards quebrem para a linha de baixo se necessário */
+}
+
+.skill-card {
+  background-color: #2c2c2c; /* Cor de fundo dos cards */
+  color: #ffffff; /* Cor do texto */
+  border-radius: 10px; /* Bordas arredondadas */
+  padding: 20px; /* Padding para os cards */
+  margin: 10px; /* Margem entre os cards */
+  width: 120px; /* Largura fixa dos cards */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra para os cards */
+  transition: transform 0.3s, box-shadow 0.3s; /* Transições suaves */
+  position: relative; /* Para animações */
+  text-align: center; /* Centraliza o texto dentro do card */
+}
+
+.skill-card:hover {
+  transform: translateY(-5px); /* Eleva o card ao passar o mouse */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Aumenta a sombra ao passar o mouse */
+}
+
+.icon {
+  font-size: 30px; /* Tamanho do ícone */
+  margin-bottom: 10px; /* Espaçamento abaixo do ícone */
+}
+
+.skill-name {
+  font-weight: bold; /* Deixa o nome da habilidade em negrito */
+} 
