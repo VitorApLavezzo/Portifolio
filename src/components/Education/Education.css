@@ -1,0 +1,55 @@
+.education-container {
+  padding: 20px;
+  background-color: inherit; /* Herda a cor de fundo do body */
+  color: inherit; /* Herda a cor do texto do body */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+  max-width: 95vw; /* Largura máxima */
+  width: 95vw; /* Largura responsiva */
+  margin: 20px auto; /* Centraliza o Hero */
+  transition: background-color 0.3s, color 0.3s; /* Transição suave para as cores */
+}
+
+.light-mode .education-container {
+  background-color: #ffffff; /* Cor de fundo em modo claro */
+  color: #333; /* Cor do texto em modo claro */
+}
+
+.dark-mode .education-container {
+  background-color: #2c2c2c; /* Cor de fundo em modo escuro */
+  color: #ffffff; /* Cor do texto em modo escuro */
+}
+
+.education-item {
+  margin-bottom: 15px; /* Espaçamento entre os itens */
+  padding: 15px; /* Espaçamento interno */
+  background-color: inherit; /* Herda a cor de fundo do container */
+  border-radius: 5px; /* Bordas arredondadas para os itens */
+  transition: background-color 0.3s, transform 0.3s; /* Transição suave para a cor de fundo e transformação */
+  border: 1px solid transparent; /* Borda transparente para efeito de hover */
+}
+
+.education-container h2 {
+  text-align: center; /* Centraliza o texto */
+  margin-bottom: 20px; /* Espaçamento abaixo do título */
+  color: inherit; /* Herda a cor do texto do container */
+}
+
+
+.education-item:hover {
+  background-color: rgba(74, 144, 226, 0.2); /* Cor de fundo ao passar o mouse */
+  transform: translateY(-3px); /* Eleva o item ao passar o mouse */
+  border: 1px solid #4a90e2; /* Borda ao passar o mouse */
+}
+
+.education-item h3 {
+  font-size: 1.2rem; /* Tamanho da fonte do título */
+  font-weight: bold; /* Negrito para o título */
+  margin: 0; /* Remove margem padrão */
+}
+
+.education-item p {
+  font-size: 0.9rem; /* Tamanho da fonte do texto */
+  margin-top: 5px; /* Espaçamento acima do texto */
+  color: inherit; /* Herda a cor do texto do container */
+} 

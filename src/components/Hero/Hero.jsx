@@ -8,7 +8,7 @@ const Hero = () => {
         <h1>Olá, eu sou o Vitor Aparecido Lavezzo :)</h1>
         <p>Desenvolvedor Back-End</p>
         <div className="hero-buttons">
-          <button className="btn">Download CV</button>
+          <a href="Vitor Lavezzo - CV.docx.pdf" download className="btn">Download CV</a>
           <button className="btn btn-outline">Entrar em contato</button>
         </div>
       </div>

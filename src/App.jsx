@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react'
-import './App.css'
+import { useState, useEffect } from 'react';
+import './App.css';
 import Skills from './components/Skills/Skills'; // Importando o componente Skills
 import Hero from './components/Hero/Hero'; // Importando o componente Hero
+import Experience from './components/Experience/Experience'; // Importando o componente Experience
+import Education from './components/Education/Education';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
@@ -32,8 +34,10 @@ function App() {
       </nav>
       <Hero /> {/* Adicionando o componente Hero */}
       <Skills /> {/* Adicionando o componente Skills */}
+      <Experience /> {/* Adicionando o componente Experience */}
+      <Education />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -4,11 +4,12 @@
   background: #2c2c2c; /* Cor de fundo em modo escuro */
   padding: 40px; /* Padding para a seção */
   border-radius: 10px; /* Bordas arredondadas para a seção */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada para efeito de flutuação */
   transition: background-color 0.3s; /* Transição suave para a cor de fundo */
 }
 
 .light-mode .skills-container {
-  background-color: #f4f4f4; /* Cor de fundo em modo claro */
+  background-color: #ffffff; /* Cor de fundo em modo claro */
   color: #333; /* Cor do texto em modo claro */
 }
 
@@ -31,17 +32,19 @@
   width: 120px; /* Largura fixa dos cards */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra para os cards */
   transition: transform 0.3s, box-shadow 0.3s; /* Transições suaves */
-  position: relative; /* Para animações */
   text-align: center; /* Centraliza o texto dentro do card */
+  text-decoration: none; /* Remove o sublinhado do link */
 }
 
 .skill-card:hover {
   transform: translateY(-5px); /* Eleva o card ao passar o mouse */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Aumenta a sombra ao passar o mouse */
+  color: #4a90e2; /* Muda a cor do texto ao passar o mouse */
 }
 
 .icon {
-  font-size: 30px; /* Tamanho do ícone */
+  width: 60px; /* Largura do ícone */
+  height: 60px; /* Altura do ícone */
   margin-bottom: 10px; /* Espaçamento abaixo do ícone */
 }
 
