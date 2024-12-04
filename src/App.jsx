@@ -16,7 +16,7 @@ function App() {
   }, [darkMode]);
 
   return (
-    <div className={darkMode ? 'dark-mode' : 'light-mode'}>
+    <div className={`app-wrapper ${darkMode ? 'dark-mode' : 'light-mode'}`}>
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
       <main className="app-container">
         <section id="home">
