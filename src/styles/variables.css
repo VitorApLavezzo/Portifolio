@@ -1,0 +1,15 @@
+:root {
+  /* Tempos de animação */
+  --animation-speed-slow: 20s;
+  --animation-speed-medium: 6s;
+  --animation-speed-fast: 0.4s;
+  
+  /* Cores e gradientes */
+  --gradient-primary: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  --gradient-accent: linear-gradient(45deg, #4a90e2, #357abd);
+  --glow-color: rgba(74, 144, 226, 0.1);
+  
+  /* Timing functions */
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+} 

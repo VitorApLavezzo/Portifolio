@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import './Experience.css'; // Estilos específicos para o componente Experience
+import { motion } from 'framer-motion';
+import './Experience.css';
 
 const Experience = () => {
   const [isExpandedNappIntegration, setIsExpandedNappIntegration] = useState(false);
   const [isExpandedNappInternship, setIsExpandedNappInternship] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const toggleNappIntegration = () => {
     setIsExpandedNappIntegration(!isExpandedNappIntegration);
@@ -16,7 +18,7 @@ const Experience = () => {
   return (
     <div className="experience-container">
       <h2>Minhas Experiências</h2>
-      <div className="experience-item">
+      <div className="experience-item animated-card">
         <h3 onClick={toggleNappIntegration} className="clickable-title">
           NAPP - Assistente de Integração (Central de Catálogos)
           <span className="experience-period"> Julho de 2023 - Presente</span>
@@ -32,7 +34,7 @@ const Experience = () => {
           </div>
         )}
       </div>
-      <div className="experience-item">
+      <div className="experience-item animated-card">
         <h3 onClick={toggleNappInternship} className="clickable-title">
           NAPP - Central de Catálogos (Estagiário)
           <span className="experience-period"> Fevereiro de 2023 - Julho de 2023</span>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion'; // Importando motion do framer-motion
 import './Skills.css'; // Importando o CSS para o componente
 
 const Skills = () => {
@@ -18,10 +19,16 @@ const Skills = () => {
       <p>As tecnologias que utilizo para desenvolver projetos incríveis.</p>
       <div className="skills-list">
         {skills.map((skill, index) => (
-          <a key={index} href={skill.link} target="_blank" rel="noopener noreferrer" className="skill-card">
-            <img src={skill.icon} alt={skill.name} className="icon" />
-            <div className="skill-name">{skill.name}</div>
-          </a>
+          <div 
+            key={index} 
+            className="skill-card animated-card fade-in-up"
+            data-delay={index * 0.1}
+          >
+            <div className="image-loading">
+              <img src={skill.icon} alt={skill.name} />
+            </div>
+            <span className="skill-name">{skill.name}</span>
+          </div>
         ))}
       </div>
     </div>
