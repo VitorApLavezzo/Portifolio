@@ -25,7 +25,7 @@ const Hero = () => {
         </div>
       </motion.div>
       <div className="hero-image">
-        <img src="src/components/Hero/1675897493970-removebg-preview.png" alt="Rhuan Bello" />
+        <img src="Portilio/src/components/Hero/1675897493970-removebg-preview.png" alt="Rhuan Bello" />
       </div>
     </div>
   );
