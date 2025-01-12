@@ -14,8 +14,8 @@ const Hero = () => {
         <h1>Olá, eu sou o Vitor Aparecido Lavezzo :)</h1>
         <p>Desenvolvedor Back-End</p>
         <div className="hero-buttons">
-          <a href="Vitor Lavezzo - CV.pdf" download className="btn">Download CV</a>
-          <a href="https://github.com/VitorApLavezzo" target="_blank" className="btn">Github</a>
+          <a href="Vitor Lavezzo - CV.pdf" download className="btn no-link">Download CV</a>
+          <a href="https://github.com/VitorApLavezzo" target="_blank" className="btn no-link">Github</a>
           </div>
       </motion.div>
       <div className="hero-image">
