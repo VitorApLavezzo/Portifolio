@@ -25,7 +25,7 @@ const Hero = () => {
         </div>
       </motion.div>
       <div className="hero-image">
-        <img src={`${process.env.PUBLIC_URL}/1675897493970-removebg-preview.png`} alt="Imagem" />
+        <img src={`https://drive.google.com/uc?export=view&id=139J0gkskmEZ-xWRUfGHjhz52dlFnnL0U`} alt="Imagem" />
       </div>
     </div>
   );
