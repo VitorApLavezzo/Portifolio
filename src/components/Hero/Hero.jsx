@@ -25,7 +25,7 @@ const Hero = () => {
         </div>
       </motion.div>
       <div className="hero-image">
-        <img src="Portilio/1675897493970-removebg-preview.png"/>
+        <img src={`${process.env.PUBLIC_URL}/1675897493970-removebg-preview.png`} alt="Imagem" />
       </div>
     </div>
   );
