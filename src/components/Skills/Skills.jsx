@@ -16,7 +16,7 @@ const Skills = () => {
   return (
     <div className="skills-container">
       <h2>Minhas Habilidades</h2>
-      <p>As tecnologias que utilizo para desenvolver projetos incríveis.</p>
+      <p>As tecnologias que utilizo para desenvolver projetos.</p>
       <div className="skills-list">
         {skills.map((skill, index) => (
           <div 
