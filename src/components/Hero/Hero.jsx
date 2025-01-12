@@ -15,14 +15,8 @@ const Hero = () => {
         <p>Desenvolvedor Back-End</p>
         <div className="hero-buttons">
           <a href="Vitor Lavezzo - CV.pdf" download className="btn">Download CV</a>
-          <motion.button 
-            className="btn btn-outline"
-            whileHover={{ scale: 1.1 }} // Aumenta o botão ao passar o mouse
-            whileTap={{ scale: 0.9 }} // Diminui o botão ao clicar
-          >
-            Entrar em contato
-          </motion.button>
-        </div>
+          <a href="https://github.com/VitorApLavezzo" target="_blank" className="btn">Github</a>
+          </div>
       </motion.div>
       <div className="hero-image">
         <img src={`https://vitoraplavezzo.github.io/Portifolio/1675897493970-removebg-preview.png`} alt="Imagem" />
