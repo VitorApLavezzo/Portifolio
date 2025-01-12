@@ -14,7 +14,7 @@ const Hero = () => {
         <h1>Olá, eu sou o Vitor Aparecido Lavezzo :)</h1>
         <p>Desenvolvedor Back-End</p>
         <div className="hero-buttons">
-          <a href="Vitor Lavezzo - CV.docx.pdf" download className="btn">Download CV</a>
+          <a href="Vitor Lavezzo - CV.pdf" download className="btn">Download CV</a>
           <motion.button 
             className="btn btn-outline"
             whileHover={{ scale: 1.1 }} // Aumenta o botão ao passar o mouse

@@ -19,8 +19,8 @@ body {
 }
 
 .app-container {
-  width: 95vw;
-  max-width: 95vw;
+  width: 100vw;
+  max-width: 1800px;
   margin: 0 auto;
   padding: 80px 20px 20px 20px;
   display: flex;
@@ -33,8 +33,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
-  margin-bottom: -1rem;
+  margin-bottom: 1rem;
 }
 
 /* Classe comum para todos os containers principais */
@@ -43,8 +42,10 @@ section {
 .experience-container,
 .education-container {
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
+  padding: 3rem 2rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 1) 0%, rgba(45, 45, 45, 1) 100%);
 }
 
 /* Estilos para modo claro/escuro */
