@@ -25,7 +25,7 @@ const Hero = () => {
         </div>
       </motion.div>
       <div className="hero-image">
-        <img src={`https://vitoraplavezzo.github.io/Portilio/1675897493970-removebg-preview.png`} alt="Imagem" />
+        <img src={`https://vitoraplavezzo.github.io/Portifolio/1675897493970-removebg-preview.png`} alt="Imagem" />
       </div>
     </div>
   );
