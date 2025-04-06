@@ -44,7 +44,7 @@ const Experience = () => {
           NAPP - Assistente de Integração (Central de Catálogos)
           <span className="experience-period"> Julho de 2023 - Janeiro de 2025</span>
         </h3>
-        {isExpandedNappIntegration && (
+        {isExpandedNappAss && (
           <div className="experience-details">
             <ul>
               <li>No primeiro momento, fiquei responsável pelo O2O (online to offline), focado em produtos enviados para o marketplace do google.</li>
