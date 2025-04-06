@@ -4,11 +4,16 @@ import './Experience.css';
 
 const Experience = () => {
   const [isExpandedNappIntegration, setIsExpandedNappIntegration] = useState(false);
+  const [isExpandedNappAss, setIsExpandedNappAss] = useState(false);
   const [isExpandedNappInternship, setIsExpandedNappInternship] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleNappIntegration = () => {
-    setIsExpandedNappIntegration(!isExpandedNappIntegration);
+    setIsExpandedNappIntegration(!isExpandedNappAss);
+  };
+
+  const toggleNappAss = () => {
+    setIsExpandedNappAss(!isExpandedNappAss);
   };
 
   const toggleNappInternship = () => {
@@ -35,7 +40,7 @@ const Experience = () => {
         )}
       </div>
       <div className="experience-item animated-card">
-        <h3 onClick={toggleNappIntegration} className="clickable-title">
+        <h3 onClick={toggleNappAss} className="clickable-title">
           NAPP - Assistente de Integração (Central de Catálogos)
           <span className="experience-period"> Julho de 2023 - Janeiro de 2025</span>
         </h3>
