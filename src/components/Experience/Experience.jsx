@@ -9,7 +9,7 @@ const Experience = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleNappIntegration = () => {
-    setIsExpandedNappIntegration(!isExpandedNappAss);
+    setIsExpandedNappIntegration(!isExpandedNappIntegration);
   };
 
   const toggleNappAss = () => {
