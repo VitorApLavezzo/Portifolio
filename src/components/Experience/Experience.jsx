@@ -20,8 +20,24 @@ const Experience = () => {
       <h2>Minhas Experiências</h2>
       <div className="experience-item animated-card">
         <h3 onClick={toggleNappIntegration} className="clickable-title">
+          NAPP - Analista de Integração Junior
+          <span className="experience-period"> Janeiro de 2025 - Presente</span>
+        </h3>
+        {isExpandedNappIntegration && (
+          <div className="experience-details">
+            <ul>
+              <li>Realizo a integração de lojas que estão presentes em shoppings e aeropostos, com o objetivo de realizar a auditoria dos empreendimentos.</li>
+              <li>Realizo essa coleta de informações tanto por instalação de ferramentas no computadores das lojas por conexões remotas, quanto por rotinas de webscrapings, webservices, etc...</li>
+              <li>Utilizando tecnologias como: Python, Git, SQL Server, SQlite, Postgres, Firebird, Oracle, Access, My SQL, etc...</li>
+              <li>Metodologia de desenvolvimento: Orientação a objetos</li>
+            </ul>
+          </div>
+        )}
+      </div>
+      <div className="experience-item animated-card">
+        <h3 onClick={toggleNappIntegration} className="clickable-title">
           NAPP - Assistente de Integração (Central de Catálogos)
-          <span className="experience-period"> Julho de 2023 - Presente</span>
+          <span className="experience-period"> Julho de 2023 - Janeiro de 2025</span>
         </h3>
         {isExpandedNappIntegration && (
           <div className="experience-details">
