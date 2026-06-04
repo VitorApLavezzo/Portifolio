@@ -2,112 +2,208 @@
 
 .experience-container {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 3rem 2rem;
-  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-  border-radius: 10px;
-  margin-bottom: 2rem;
+  padding: 3.5rem 2rem;
+  border-radius: 16px;
 }
 
-.experience-item {
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  transition: transform 0.3s ease;
+.dark-mode .experience-container {
+  background: linear-gradient(135deg, #1c1c1c, #272727);
 }
 
-.experience-item:hover {
-  transform: translateX(10px);
-  background: rgba(74, 144, 226, 0.1);
+.light-mode .experience-container {
+  background: linear-gradient(135deg, #ffffff, #f3f4f6);
 }
 
-.clickable-title {
-  cursor: pointer;
+.experience-container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  opacity: 0.55;
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 28px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: rgba(74, 144, 226, 0.25);
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -24px;
+  top: 20px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #2d2d2d;
+  border: 2.5px solid rgba(74, 144, 226, 0.4);
+  transition: border-color 0.3s, background 0.3s;
+  z-index: 1;
+}
+
+.light-mode .timeline-dot {
+  background: #ffffff;
+}
+
+.timeline-item.active .timeline-dot {
+  border-color: #4a90e2;
+  background: #4a90e2;
+  box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.18);
+}
+
+.timeline-body {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.dark-mode .timeline-body {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.light-mode .timeline-body {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.timeline-item.active .timeline-body,
+.timeline-body:hover {
+  box-shadow: 0 4px 20px rgba(74, 144, 226, 0.15);
+}
+
+.timeline-header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.5rem;
+  padding: 1.2rem 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
 }
 
-.experience-period {
-  font-size: 0.9rem;
-  color: #e0e0e0;
+.timeline-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
-.experience-details {
+.timeline-role {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.dark-mode .timeline-role { color: #f3f4f6; }
+.light-mode .timeline-role { color: #111827; }
+
+.timeline-company {
+  font-size: 0.85rem;
+  color: #4a90e2;
+  font-weight: 500;
+}
+
+.timeline-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.badge-current {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: rgba(74, 144, 226, 0.18);
+  color: #4a90e2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.timeline-period {
+  font-size: 0.82rem;
+  opacity: 0.5;
+  white-space: nowrap;
+}
+
+.dark-mode .timeline-period { color: #e5e7eb; }
+.light-mode .timeline-period { color: #374151; }
+
+.timeline-chevron {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #4a90e2;
+  width: 20px;
+  text-align: center;
+}
+
+/* Details */
+.timeline-details {
   overflow: hidden;
-  animation: slideDown var(--animation-speed-fast) var(--ease-out-expo);
+  padding: 0 1.4rem 1.2rem;
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
+.timeline-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.timeline-details li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.93rem;
+  line-height: 1.65;
+}
+
+.dark-mode .timeline-details li { color: #b0b8c4; }
+.light-mode .timeline-details li { color: #4b5563; }
+
+.timeline-details li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #4a90e2;
+  font-size: 0.85rem;
+  top: 2px;
+}
+
+@media (max-width: 768px) {
+  .timeline-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .timeline-header-right {
+    flex-wrap: wrap;
   }
 }
-
-.experience-container h2 {
-  text-align: center; /* Centraliza o texto */
-  margin-bottom: 40px; /* Espaçamento abaixo do título */
-  color: inherit; /* Herda a cor do texto do container */
-}
-
-.experience-period {
-  font-weight: normal; /* Peso da fonte normal para o período */
-  color: #e0e0e0; /* Cor do texto do período */
-  font-size: 1rem; /* Tamanho da fonte do período */
-}
-
-.experience-item p {
-  font-weight: bold; /* Negrito para o período */
-  margin: 5px 0; /* Margem para separar do restante do conteúdo */
-  color: inherit; /* Herda a cor do texto do container */
-}
-
-.experience-item ul {
-  list-style-type: none; /* Remove marcadores padrão */
-  padding-left: 0; /* Remove padding */
-}
-
-.experience-item li {
-  margin: 5px 0; /* Espaçamento entre os itens da lista */
-  line-height: 1.5; /* Altura da linha para melhor legibilidade */
-  position: relative; /* Para posicionar o marcador */
-  padding-left: 20px; /* Espaçamento à esquerda para o marcador */
-  color: inherit; /* Herda a cor do texto do container */
-}
-
-.experience-item li::before {
-  content: '✔'; /* Ícone de verificação como marcador */
-  position: absolute; /* Posiciona o ícone */
-  left: 0; /* Alinha à esquerda */
-  color: #4a90e2; /* Cor do ícone */
-  font-size: 1.2rem; /* Tamanho do ícone */
-}
-
-.experience-item h3 {
-  color: inherit; /* Herda a cor do texto do container */
-  margin: 0; /* Remove margem padrão */
-} 
-
-.experience-item span {
-  color: inherit; /* Herda a cor do texto do container */
-  margin: 0; /* Remove margem padrão */
-} 
-
-/* Modo claro */
-.light-mode .experience-container {
-  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
-}
-
-.light-mode .experience-item {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-} 

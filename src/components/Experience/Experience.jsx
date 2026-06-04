@@ -1,78 +1,98 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import './Experience.css';
 
+const experiences = [
+  {
+    role: 'Analista de Integração Júnior',
+    company: 'NAPP',
+    period: 'Jan 2025 — Presente',
+    current: true,
+    bullets: [
+      'Integração de lojas em shoppings e aeroportos com foco em auditoria remota.',
+      'Coleta de dados via ferramentas instaladas remotamente, web scraping e web services.',
+      'Stack: Python, Git, SQL Server, SQLite, PostgreSQL, Firebird, Oracle, Access, MySQL.',
+      'Desenvolvimento orientado a objetos como metodologia principal.',
+    ],
+  },
+  {
+    role: 'Assistente de Integração',
+    company: 'NAPP',
+    period: 'Jul 2023 — Jan 2025',
+    current: false,
+    bullets: [
+      'Responsável pelo O2O (online to offline) para o Google Marketplace.',
+      'Desenvolvimento de scripts de web scraping e automação de processos.',
+      'Integração e sincronização de dados de catálogos entre sistemas e plataformas.',
+      'Análise e validação de dados integrados, garantindo qualidade e conformidade.',
+    ],
+  },
+  {
+    role: 'Estagiário — Central de Catálogos',
+    company: 'NAPP',
+    period: 'Fev 2023 — Jul 2023',
+    current: false,
+    bullets: [
+      'Organização e atualização de catálogos de produtos.',
+      'Participação em reuniões de equipe para estratégias de melhoria.',
+      'Apoio na integração de novos dados ao sistema central.',
+      'Introdução à área de desenvolvimento do setor.',
+    ],
+  },
+];
+
 const Experience = () => {
-  const [isExpandedNappIntegration, setIsExpandedNappIntegration] = useState(false);
-  const [isExpandedNappAss, setIsExpandedNappAss] = useState(false);
-  const [isExpandedNappInternship, setIsExpandedNappInternship] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-
-  const toggleNappIntegration = () => {
-    setIsExpandedNappIntegration(!isExpandedNappIntegration);
-  };
-
-  const toggleNappAss = () => {
-    setIsExpandedNappAss(!isExpandedNappAss);
-  };
-
-  const toggleNappInternship = () => {
-    setIsExpandedNappInternship(!isExpandedNappInternship);
-  };
+  const [openIndex, setOpenIndex] = useState(0);
 
   return (
     <div className="experience-container">
-      <h2>Minhas Experiências</h2>
-      <div className="experience-item animated-card">
-        <h3 onClick={toggleNappIntegration} className="clickable-title">
-          NAPP - Analista de Integração Júnior
-          <span className="experience-period">Janeiro de 2025 - Presente</span>
-        </h3>
-        {isExpandedNappIntegration && (
-          <div className="experience-details">
-            <ul>
-              <li>Responsável pela integração de lojas localizadas em shoppings e aeroportos, com foco na auditoria dos empreendimentos.</li>
-              <li>Coleta de informações por meio de ferramentas instaladas remotamente nos computadores das lojas, além do uso de rotinas de web scraping, web services, entre outros métodos.</li>
-              <li>Utilização de tecnologias como: Python, Git, SQL Server, SQLite, PostgreSQL, Firebird, Oracle, Access, MySQL, entre outras.</li>
-              <li>Desenvolvimento orientado a objetos como principal metodologia.</li>
-            </ul>
+      <h2>Experiência</h2>
+      <p className="section-subtitle">Minha trajetória profissional</p>
+
+      <div className="timeline">
+        {experiences.map((exp, i) => (
+          <div key={i} className={`timeline-item ${openIndex === i ? 'active' : ''}`}>
+            <div className="timeline-dot" />
+            <div className="timeline-body">
+              <button
+                className="timeline-header"
+                onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
+                aria-expanded={openIndex === i}
+              >
+                <div className="timeline-header-left">
+                  <span className="timeline-role">{exp.role}</span>
+                  <span className="timeline-company">{exp.company}</span>
+                </div>
+                <div className="timeline-header-right">
+                  {exp.current && <span className="badge-current">Atual</span>}
+                  <span className="timeline-period">{exp.period}</span>
+                  <span className="timeline-chevron">{openIndex === i ? '−' : '+'}</span>
+                </div>
+              </button>
+
+              <AnimatePresence>
+                {openIndex === i && (
+                  <motion.div
+                    className="timeline-details"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
+                  >
+                    <ul>
+                      {exp.bullets.map((b, j) => (
+                        <li key={j}>{b}</li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
-        )}
-      </div>
-      <div className="experience-item animated-card">
-        <h3 onClick={toggleNappAss} className="clickable-title">
-          NAPP - Assistente de Integração (Central de Catálogos)
-          <span className="experience-period"> Julho de 2023 - Janeiro de 2025</span>
-        </h3>
-        {isExpandedNappAss && (
-          <div className="experience-details">
-            <ul>
-              <li>No primeiro momento, fiquei responsável pelo O2O (online to offline), focado em produtos enviados para o marketplace do google.</li>
-              <li>Com o passar do tempo passei a entrar para a parte técnica do setor, onde fiquei focado no desenvolvimento de Web Scrapings e scripts de automatização.</li>
-              <li>Responsável pela integração e sincronização de dados de catálogos entre diversos sistemas e plataformas.</li>
-              <li>Faço a análise e validação dos dados integrados, garantindo conformidade com os padrões de qualidade e requisitos dos clientes.</li>
-            </ul>
-          </div>
-        )}
-      </div>
-      <div className="experience-item animated-card">
-        <h3 onClick={toggleNappInternship} className="clickable-title">
-          NAPP - Central de Catálogos (Estagiário)
-          <span className="experience-period"> Fevereiro de 2023 - Julho de 2023</span>
-        </h3>
-        {isExpandedNappInternship && (
-          <div className="experience-details">
-            <ul>
-              <li>Auxiliava na organização e atualização dos catálogos de produtos.</li>
-              <li>Participava de reuniões de equipe para o planejamento e execução de estratégias de melhoria dos catálogos.</li>
-              <li>Auxiliava na integração de novos dados e informações dos produtos ao sistema central.</li>
-              <li>Introdução da área de desenvolvimento do setor.</li>
-            </ul>
-          </div>
-        )}
+        ))}
       </div>
     </div>
   );
 };
 
-export default Experience; 
+export default Experience;

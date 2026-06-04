@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import Skills from './components/Skills/Skills';
+import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
+import Skills from './components/Skills/Skills';
 import Experience from './components/Experience/Experience';
 import Education from './components/Education/Education';
-import Navbar from './components/Navbar/Navbar';
-import { initAnimations } from './utils/animationObserver';
+import Contact from './components/Contact/Contact';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
     document.body.className = darkMode ? 'dark-mode' : 'light-mode';
-    initAnimations();
   }, [darkMode]);
 
   return (
@@ -31,7 +31,11 @@ function App() {
         <section id="education">
           <Education />
         </section>
+        <section id="contact">
+          <Contact />
+        </section>
       </main>
+      <Footer />
     </div>
   );
 }

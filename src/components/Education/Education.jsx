@@ -1,62 +1,77 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import './Education.css';
 
-const Education = () => {
-  const [isVisible, setIsVisible] = useState(false);
+const educationItems = [
+  {
+    institution: 'Universidade Paulista (UNIP)',
+    course: 'Bacharelado em Ciência da Computação',
+    period: '2023 — 2026',
+    status: 'Cursando',
+    description: 'Foco em desenvolvimento de software e tecnologias emergentes.',
+  },
+  {
+    institution: 'ETEC Dep. Salim Sedeh',
+    course: 'Ensino Médio integrado ao Técnico em Desenvolvimento de Sistemas',
+    period: '2022',
+    status: 'Concluído',
+    description: 'Formação técnica em desenvolvimento de sistemas e programação.',
+  },
+  {
+    institution: 'NAPP Academy',
+    course: 'SQL e Firebird',
+    period: '2023',
+    status: 'Concluído',
+    description: 'Curso complementar focado em bancos de dados relacionais.',
+  },
+  {
+    institution: 'Udemy',
+    course: 'Python — Desenvolvimento Back-End',
+    period: '2024',
+    status: 'Concluído',
+    description: 'Aprofundamento em programação Python e desenvolvimento back-end.',
+  },
+];
 
-  const educationItems = [
-    {
-      title: 'Universidade Paulista, Bacharelado em Ciência da Computação | Cursando | 2023 - 2026',
-      description: 'Foco em desenvolvimento de software e tecnologias emergentes.',
-    },
-    {
-      title: 'ETEC Dep. Salim Sedeh, Ensino Médio integrado ao técnico em Desenvolvimento de Sistemas | 2022',
-      description: 'Formação técnica em desenvolvimento de sistemas e programação.',
-    },
-    {
-      title: 'Curso complementar sobre SQL/Firebird pela Napp Academy',
-      description: 'Aprendizado em bancos de dados e gerenciamento de dados.',
-    },
-    {
-      title: 'Curso complementar sobre Python pela Udemy | Cursando',
-      description: 'Desenvolvimento de habilidades em programação com Python.',
-    },
-  ];
-
-  const handleScroll = () => {
-    const position = window.scrollY;
-    if (position > 100) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  return (
-    <div className="education-container">
-      <h2>Educação e Formação</h2>
-      {educationItems.map((item, index) => (
-        <motion.div
-          key={index}
-          className="education-item"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-        >
-          <h3>{item.title}</h3>
-          <p>{item.description}</p>
-        </motion.div>
-      ))}
-    </div>
-  );
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
-export default Education; 
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.45 } },
+};
+
+const Education = () => (
+  <div className="education-container">
+    <h2>Educação</h2>
+    <p className="section-subtitle">Formação acadêmica e cursos complementares</p>
+
+    <motion.div
+      className="education-list"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-60px' }}
+    >
+      {educationItems.map((item, i) => (
+        <motion.div key={i} className="education-item" variants={itemVariants}>
+          <div className="education-item-left">
+            <span className={`edu-status ${item.status === 'Cursando' ? 'ongoing' : 'done'}`}>
+              {item.status}
+            </span>
+            <span className="edu-period">{item.period}</span>
+          </div>
+          <div className="education-item-right">
+            <h3 className="edu-course">{item.course}</h3>
+            <span className="edu-institution">{item.institution}</span>
+            <p className="edu-description">{item.description}</p>
+          </div>
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+);
+
+export default Education;
