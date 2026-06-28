@@ -17,8 +17,8 @@ const contacts = [
   },
   {
     label: 'E-mail',
-    value: 'vitor.lavezzo@email.com',
-    href: 'mailto:vitor.lavezzo@email.com',
+    value: 'valavezzo@email.com',
+    href: 'mailto:valavezzo@email.com',
     icon: 'https://img.icons8.com/?size=512&id=12623&format=png',
   },
 ];
