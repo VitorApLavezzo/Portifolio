@@ -1,15 +1,45 @@
 :root {
-  /* Tempos de animação */
+  /* Type */
+  --font-display: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+
+  /* Layout */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --content-width: 1080px;
+
+  /* Motion */
   --animation-speed-slow: 20s;
   --animation-speed-medium: 6s;
   --animation-speed-fast: 0.4s;
-  
-  /* Cores e gradientes */
-  --gradient-primary: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-  --gradient-accent: linear-gradient(45deg, #4a90e2, #357abd);
-  --glow-color: rgba(74, 144, 226, 0.1);
-  
-  /* Timing functions */
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-} 
+}
+
+/* Dark mode — ink navy control panel (default identity) */
+.dark-mode {
+  --ink: #0b0f14;
+  --panel: #121821;
+  --panel-2: #171f2a;
+  --hairline: #232c38;
+  --paper: #e9edf2;
+  --muted: #8a97a6;
+  --signal: #ff8a3d;
+  --signal-strong: #ffa564;
+  --pulse: #3ecf8e;
+}
+
+/* Light mode — same system, inverted surfaces */
+.light-mode {
+  --ink: #f4f6f8;
+  --panel: #ffffff;
+  --panel-2: #eef1f4;
+  --hairline: #d9dee4;
+  --paper: #10151c;
+  --muted: #5b6672;
+  --signal: #d9660c;
+  --signal-strong: #b8540a;
+  --pulse: #1e9e63;
+}

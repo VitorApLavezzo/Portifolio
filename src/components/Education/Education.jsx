@@ -45,7 +45,8 @@ const itemVariants = {
 
 const Education = () => (
   <div className="education-container">
-    <h2>Educação</h2>
+    <span className="section-eyebrow">~/education</span>
+    <h2 className="section-heading">Educação</h2>
     <p className="section-subtitle">Formação acadêmica e cursos complementares</p>
 
     <motion.div

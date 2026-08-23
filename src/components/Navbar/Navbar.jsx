@@ -14,18 +14,21 @@ const Navbar = ({ darkMode, setDarkMode }) => {
   }, []);
 
   const links = [
-    { href: '#home', label: 'Início' },
-    { href: '#skills', label: 'Habilidades' },
-    { href: '#experience', label: 'Experiência' },
-    { href: '#education', label: 'Educação' },
-    { href: '#contact', label: 'Contato' },
+    { href: '#home', label: '~/home' },
+    { href: '#skills', label: '~/skills' },
+    { href: '#projects', label: '~/projects' },
+    { href: '#playground', label: '~/playground' },
+    { href: '#experience', label: '~/experience' },
+    { href: '#education', label: '~/education' },
+    { href: '#contact', label: '~/contact' },
   ];
 
   return (
     <nav className={`navbar ${darkMode ? 'dark-mode' : 'light-mode'} ${scrolled ? 'scrolled' : ''}`}>
       <div className="navbar-content">
         <a href="#home" className="navbar-logo">
-          VL<span className="logo-dot">.</span>
+          <span className="navbar-logo-badge">VL</span>
+          <span className="navbar-logo-status" aria-hidden="true" />
         </a>
 
         <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>

@@ -3,6 +3,8 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import Skills from './components/Skills/Skills';
+import Projects from './components/Projects/Projects';
+import Playground from './components/Playground/Playground';
 import Experience from './components/Experience/Experience';
 import Education from './components/Education/Education';
 import Contact from './components/Contact/Contact';
@@ -24,6 +26,12 @@ function App() {
         </section>
         <section id="skills">
           <Skills />
+        </section>
+        <section id="projects">
+          <Projects />
+        </section>
+        <section id="playground">
+          <Playground />
         </section>
         <section id="experience">
           <Experience />

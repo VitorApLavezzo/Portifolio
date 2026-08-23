@@ -7,19 +7,19 @@ const contacts = [
     label: 'GitHub',
     value: 'VitorApLavezzo',
     href: 'https://github.com/VitorApLavezzo',
-    icon: 'https://img.icons8.com/?size=512&id=62856&format=png',
+    glyph: '</>',
   },
   {
     label: 'LinkedIn',
     value: 'vitor-aparecido-lavezzo',
     href: 'https://linkedin.com/in/vitor-aparecido-lavezzo',
-    icon: 'https://img.icons8.com/?size=512&id=13930&format=png',
+    glyph: 'in',
   },
   {
     label: 'E-mail',
-    value: 'valavezzo@email.com',
-    href: 'mailto:valavezzo@email.com',
-    icon: 'https://img.icons8.com/?size=512&id=12623&format=png',
+    value: 'valavezzo@gmail.com',
+    href: 'mailto:valavezzo@gmail.com',
+    glyph: '@',
   },
 ];
 
@@ -35,7 +35,8 @@ const cardVariants = {
 
 const Contact = () => (
   <div className="contact-container">
-    <h2>Contato</h2>
+    <span className="section-eyebrow">~/contact</span>
+    <h2 className="section-heading">Contato</h2>
     <p className="section-subtitle">Vamos conversar? Entre em contato por qualquer canal abaixo.</p>
 
     <motion.div
@@ -51,11 +52,11 @@ const Contact = () => (
           href={c.href}
           target="_blank"
           rel="noreferrer"
-          className="contact-card"
+          className="contact-card panel"
           variants={cardVariants}
-          whileHover={{ y: -4 }}
+          whileHover={{ y: -3 }}
         >
-          <img src={c.icon} alt={c.label} />
+          <span className="contact-glyph">{c.glyph}</span>
           <div className="contact-info">
             <span className="contact-label">{c.label}</span>
             <span className="contact-value">{c.value}</span>

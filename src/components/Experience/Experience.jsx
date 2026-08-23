@@ -9,7 +9,7 @@ const experiences = [
     period: 'Jan 2025 — Presente',
     current: true,
     bullets: [
-      'Integração de lojas em shoppings e aeroportos com foco em auditoria remota.',
+      'Integração de farmácias, supermercados, petshops e lojas dos EUA, com foco em coleta de produtos.',
       'Coleta de dados via ferramentas instaladas remotamente, web scraping e web services.',
       'Stack: Python, Git, SQL Server, SQLite, PostgreSQL, Firebird, Oracle, Access, MySQL.',
       'Desenvolvimento orientado a objetos como metodologia principal.',
@@ -46,7 +46,8 @@ const Experience = () => {
 
   return (
     <div className="experience-container">
-      <h2>Experiência</h2>
+      <span className="section-eyebrow">~/experience</span>
+      <h2 className="section-heading">Experiência</h2>
       <p className="section-subtitle">Minha trajetória profissional</p>
 
       <div className="timeline">
