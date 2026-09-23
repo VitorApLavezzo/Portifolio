@@ -1,164 +1,130 @@
-.experience-container {
-  width: 100%;
+/* One shade lighter than the page, so the trajectory reads as its own band */
+.experience {
+  background: var(--ink-2);
 }
 
-/* Timeline */
-.timeline {
-  position: relative;
-  padding-left: 28px;
+.experience-lede {
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 16px;
+  line-height: 1.6;
 }
 
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 7px;
-  top: 8px;
-  bottom: 8px;
-  width: 1px;
-  background: var(--hairline);
+.experience-list {
+  border-top: 1px solid var(--hairline);
 }
 
-.timeline-item {
-  position: relative;
-  margin-bottom: 1rem;
+.experience-item {
+  border-bottom: 1px solid var(--hairline);
 }
 
-.timeline-dot {
-  position: absolute;
-  left: -24px;
-  top: 20px;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: var(--panel);
-  border: 2px solid var(--hairline);
-  transition: border-color 0.3s, background 0.3s;
-  z-index: 1;
-}
-
-.timeline-item.active .timeline-dot {
-  border-color: var(--signal);
-  background: var(--signal);
-}
-
-.timeline-body {
-  border-radius: var(--radius-md);
-  border: 1px solid var(--hairline);
-  background: var(--panel);
-  overflow: hidden;
-  transition: border-color 0.2s ease;
-}
-
-.timeline-item.active .timeline-body {
-  border-color: var(--signal);
-}
-
-.timeline-header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 1.1rem 1.3rem;
-  background: none;
-  border: none;
+.experience-trigger {
+  all: unset;
   cursor: pointer;
-  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 24px;
+  align-items: center;
+  padding: 28px 0;
 }
 
-.timeline-header-left {
+/* `all: unset` also drops the focus ring, so put it back */
+.experience-trigger:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 4px;
+}
+
+.experience-identity {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 6px;
 }
 
-.timeline-role {
-  font-size: 1rem;
+.experience-role {
+  font-size: clamp(20px, 2.2vw, 28px);
   font-weight: 600;
+  letter-spacing: -0.015em;
   color: var(--paper);
 }
 
-.timeline-company {
+.experience-company {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--signal);
+  font-size: 12px;
+  color: var(--muted);
 }
 
-.timeline-header-right {
+.experience-period {
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-shrink: 0;
-}
-
-.badge-current {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 500;
-  padding: 3px 8px;
-  border-radius: var(--radius-sm);
-  background: rgba(62, 207, 142, 0.12);
-  border: 1px solid rgba(62, 207, 142, 0.35);
-  color: var(--pulse);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-}
-
-.timeline-period {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 12px;
   color: var(--muted);
   white-space: nowrap;
 }
 
-.timeline-chevron {
-  font-size: 1.1rem;
-  font-weight: 300;
+.experience-badge {
+  color: var(--on-signal);
+  background: var(--signal);
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.experience-chevron {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--hairline);
+  border-radius: 50%;
+  transition: transform 0.4s var(--ease-out-expo), border-color 0.3s;
+  font-family: var(--font-mono);
   color: var(--signal);
-  width: 18px;
-  text-align: center;
 }
 
-/* Details */
-.timeline-details {
-  overflow: hidden;
-  padding: 0 1.3rem 1.1rem;
+.experience-trigger:hover .experience-chevron {
+  border-color: var(--signal);
 }
 
-.timeline-details ul {
+.experience-bullets {
   list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px 32px;
+  padding: 0 0 32px;
 }
 
-.timeline-details li {
-  position: relative;
-  padding-left: 18px;
-  font-size: 0.92rem;
-  line-height: 1.65;
-  color: var(--muted);
+.experience-bullets li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--body);
 }
 
-.timeline-details li::before {
-  content: '▸';
-  position: absolute;
-  left: 0;
+.experience-bullet-mark {
   color: var(--signal);
-  font-size: 0.85rem;
-  top: 2px;
+  font-family: var(--font-mono);
 }
 
-@media (max-width: 768px) {
-  .timeline-header {
-    flex-direction: column;
-    align-items: flex-start;
+@media (max-width: 700px) {
+  .experience-trigger {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px 16px;
+    padding: 22px 0;
   }
 
-  .timeline-header-right {
-    flex-wrap: wrap;
+  /* Period drops under the role so the chevron keeps its own column */
+  .experience-period {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .experience-chevron {
+    grid-column: 2;
+    grid-row: 1 / span 2;
   }
 }

@@ -1,61 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon, faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useRef } from 'react';
+import { CV_URL } from '../../constants';
 import './Navbar.css';
 
-const Navbar = ({ darkMode, setDarkMode }) => {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+const LINKS = [
+  { href: '#skills', label: '01 skills' },
+  { href: '#projects', label: '02 projetos' },
+  { href: '#experience', label: '03 experiência' },
+  { href: '#education', label: '04 educação' },
+  { href: '#contact', label: '05 contato' },
+];
+
+const Navbar = () => {
+  const progressRef = useRef(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll);
+    const onScroll = () => {
+      const scroller = document.scrollingElement || document.documentElement;
+      const progress =
+        scroller.scrollTop / Math.max(1, scroller.scrollHeight - scroller.clientHeight);
+      if (progressRef.current) {
+        progressRef.current.style.transform = `scaleX(${progress})`;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const links = [
-    { href: '#home', label: '~/home' },
-    { href: '#skills', label: '~/skills' },
-    { href: '#projects', label: '~/projects' },
-    { href: '#playground', label: '~/playground' },
-    { href: '#experience', label: '~/experience' },
-    { href: '#education', label: '~/education' },
-    { href: '#contact', label: '~/contact' },
-  ];
-
   return (
-    <nav className={`navbar ${darkMode ? 'dark-mode' : 'light-mode'} ${scrolled ? 'scrolled' : ''}`}>
-      <div className="navbar-content">
+    <nav className="navbar">
+      <div ref={progressRef} className="navbar-progress" aria-hidden="true" />
+      <div className="navbar-inner">
         <a href="#home" className="navbar-logo">
           <span className="navbar-logo-badge">VL</span>
-          <span className="navbar-logo-status" aria-hidden="true" />
+          vitor.lavezzo
         </a>
 
-        <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
-          {links.map(({ href, label }) => (
-            <a
-              key={href}
-              href={href}
-              className="nav-link"
-              onClick={() => setMenuOpen(false)}
-            >
+        <div className="navbar-links">
+          {LINKS.map(({ href, label }) => (
+            <a key={href} href={href} className="navbar-link">
               {label}
             </a>
           ))}
         </div>
 
-        <div className="navbar-right">
-          <button onClick={() => setDarkMode(!darkMode)} className="theme-toggle" aria-label="Alternar tema">
-            <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
-          </button>
-          <button
-            className="menu-toggle"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
-          >
-            <FontAwesomeIcon icon={menuOpen ? faXmark : faBars} />
-          </button>
-        </div>
+        <a href={CV_URL} download className="navbar-cv">
+          CV ↓
+        </a>
       </div>
     </nav>
   );

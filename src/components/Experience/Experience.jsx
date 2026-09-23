@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import Reveal from '../Reveal/Reveal';
+import stagger from '../../utils/stagger';
+import SectionLabel from '../SectionLabel/SectionLabel';
 import './Experience.css';
 
-const experiences = [
+const EXPERIENCES = [
   {
     role: 'Analista de Integração Júnior',
     company: 'NAPP',
@@ -42,57 +45,82 @@ const experiences = [
 ];
 
 const Experience = () => {
+  // One panel open at a time; clicking the open one closes it.
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <div className="experience-container">
-      <span className="section-eyebrow">~/experience</span>
-      <h2 className="section-heading">Experiência</h2>
-      <p className="section-subtitle">Minha trajetória profissional</p>
+    <section id="experience" className="section experience">
+      <div className="section-inner section-split">
+        <div>
+          <SectionLabel text="03 / EXPERIÊNCIA" />
+          <Reveal as="h2" className="section-title">
+            Trajetória
+          </Reveal>
+          <p className="experience-lede">
+            3 cargos na NAPP,
+            <br />
+            de estagiário a analista.
+          </p>
+        </div>
 
-      <div className="timeline">
-        {experiences.map((exp, i) => (
-          <div key={i} className={`timeline-item ${openIndex === i ? 'active' : ''}`}>
-            <div className="timeline-dot" />
-            <div className="timeline-body">
-              <button
-                className="timeline-header"
-                onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
-                aria-expanded={openIndex === i}
-              >
-                <div className="timeline-header-left">
-                  <span className="timeline-role">{exp.role}</span>
-                  <span className="timeline-company">{exp.company}</span>
-                </div>
-                <div className="timeline-header-right">
-                  {exp.current && <span className="badge-current">Atual</span>}
-                  <span className="timeline-period">{exp.period}</span>
-                  <span className="timeline-chevron">{openIndex === i ? '−' : '+'}</span>
-                </div>
-              </button>
+        <div className="experience-list">
+          {EXPERIENCES.map((item, i) => {
+            const open = openIndex === i;
+            const panelId = `experience-panel-${i}`;
 
-              <AnimatePresence>
-                {openIndex === i && (
-                  <motion.div
-                    className="timeline-details"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
+            return (
+              <Reveal key={item.role} className="experience-item" delay={stagger(i)}>
+                <button
+                  type="button"
+                  className="experience-trigger"
+                  aria-expanded={open}
+                  aria-controls={panelId}
+                  onClick={() => setOpenIndex(open ? -1 : i)}
+                >
+                  <span className="experience-identity">
+                    <span className="experience-role">{item.role}</span>
+                    <span className="experience-company">{item.company}</span>
+                  </span>
+
+                  <span className="experience-period">
+                    {item.current && <span className="experience-badge">ATUAL</span>}
+                    {item.period}
+                  </span>
+
+                  <span
+                    className="experience-chevron"
+                    style={{ transform: `rotate(${open ? 180 : 0}deg)` }}
+                    aria-hidden="true"
                   >
-                    <ul>
-                      {exp.bullets.map((b, j) => (
-                        <li key={j}>{b}</li>
-                      ))}
-                    </ul>
-                  </motion.div>
+                    {open ? '−' : '+'}
+                  </span>
+                </button>
+
+                {open && (
+                  <ul id={panelId} className="experience-bullets">
+                    {item.bullets.map((bullet, bulletIndex) => (
+                      <motion.li
+                        key={bullet}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.5,
+                          delay: (bulletIndex % 4) * 0.06,
+                          ease: [0.19, 1, 0.22, 1],
+                        }}
+                      >
+                        <span className="experience-bullet-mark">→</span>
+                        <span>{bullet}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
                 )}
-              </AnimatePresence>
-            </div>
-          </div>
-        ))}
+              </Reveal>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

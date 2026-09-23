@@ -1,0 +1,14 @@
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.section-label-signal {
+  color: var(--signal);
+}
+
+/* Used on the orange contact panel, where the accent would vanish */
+.section-label-ink {
+  color: var(--on-signal);
+}

@@ -1,115 +1,114 @@
-.projects-container {
-  width: 100%;
-}
-
-.projects-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.1rem;
-}
-
-.project-card {
-  padding: 1.6rem 1.6rem 1.4rem;
+.projects-head {
   display: flex;
-  flex-direction: column;
-  transition: border-color 0.2s ease;
-}
-
-.project-card:hover {
-  border-color: var(--signal);
-}
-
-.project-header {
-  margin-bottom: 0.9rem;
-}
-
-.project-title-row {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 0.3rem;
+  align-items: end;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 56px;
+}
+
+.projects-lede {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 380px;
+}
+
+.project {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 40px;
+  padding: 48px 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.project-num {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--muted);
 }
 
 .project-name {
-  font-size: 1.2rem;
+  font-size: clamp(44px, 6vw, 88px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
   font-weight: 700;
   color: var(--paper);
+  transition: color 0.35s, transform 0.5s var(--ease-out-expo);
+}
+
+.project-name:hover {
+  color: var(--signal);
+  transform: translateX(10px);
+}
+
+.project-meta {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
 }
 
 .project-status {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 0.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  white-space: nowrap;
-  color: var(--muted);
+  gap: 7px;
+  color: var(--pulse);
 }
 
 .project-status-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-}
-
-.project-status--live .project-status-dot {
   background: var(--pulse);
-  animation: statusPulse 2.4s infinite;
 }
 
-.project-status--done .project-status-dot {
-  background: var(--muted);
-}
-
-.project-period {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--muted);
+.project-body {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
 }
 
 .project-description {
-  font-size: 0.94rem;
+  font-size: 17px;
   line-height: 1.65;
-  color: var(--muted);
-  margin-bottom: 1.2rem;
-  flex: 1;
+  color: var(--body);
+  text-wrap: pretty;
 }
 
 .project-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 1.2rem;
-}
-
-.project-stack-tag {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--signal);
-  background: var(--panel-2);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-sm);
-  padding: 0.25rem 0.55rem;
-}
-
-.project-footer {
-  border-top: 1px solid var(--hairline);
-  padding-top: 0.9rem;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
 }
 
 .project-link {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 13px;
   font-weight: 500;
-  color: var(--paper);
+  align-self: flex-start;
+  border-bottom: 1px solid var(--signal);
+  padding-bottom: 3px;
 }
 
-.project-link:hover {
-  color: var(--signal);
+/* Hub3D is closed-source — the label still reads as metadata, not a dead link */
+.project-nolink {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--dim);
 }
 
-.project-link--disabled {
-  color: var(--muted);
-  cursor: default;
+@media (max-width: 900px) {
+  .project {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 36px 0;
+  }
+
+  .project-name:hover {
+    transform: none;
+  }
 }

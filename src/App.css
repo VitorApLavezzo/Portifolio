@@ -12,52 +12,27 @@ html {
 
 body {
   font-family: var(--font-body);
-  line-height: 1.6;
+  background: var(--ink);
+  color: var(--paper);
   min-height: 100vh;
   width: 100%;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
 }
 
-.dark-mode {
-  background-color: var(--ink);
-  color: var(--paper);
-}
-
-.light-mode {
-  background-color: var(--ink);
-  color: var(--paper);
+::selection {
+  background: var(--signal);
+  color: var(--on-signal);
 }
 
 .app-wrapper {
   min-height: 100vh;
-}
-
-.app-container {
-  width: 100%;
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: 6.5rem 1.5rem 2rem;
-  display: flex;
-  flex-direction: column;
-}
-
-section {
-  width: 100%;
-  padding: 3.5rem 0;
-  border-bottom: 1px solid var(--hairline);
-}
-
-section:last-of-type {
-  border-bottom: none;
+  background: var(--ink);
+  color: var(--paper);
 }
 
 h1, h2, h3 {
-  color: var(--paper);
   font-family: var(--font-display);
-}
-
-p {
-  color: var(--muted);
+  color: var(--paper);
 }
 
 a {
@@ -70,54 +45,47 @@ a:hover {
   color: var(--signal-strong);
 }
 
-/* Shared "panel" surface — the recurring console-window motif */
-.panel {
-  background: var(--panel);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-md);
+/* ── Section primitives ───────────────────────────────────────────────
+   Every band is full-bleed with a hairline rule on top; the inner shell
+   is what holds the 1280px measure. */
+
+.section {
+  border-top: 1px solid var(--hairline);
 }
 
-/* Section eyebrow — styled like a filesystem path, tying each section
-   to a "module" of the system rather than a decorative label */
-.section-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--signal);
-  letter-spacing: 0.02em;
-  margin-bottom: 0.75rem;
+.section-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--section-pad) var(--gutter);
 }
 
-.section-eyebrow::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--signal);
+/* Label column + content column, used by Skills, Experience and Education */
+.section-split {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) minmax(0, 3fr);
+  gap: 48px;
 }
 
-.section-heading {
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
+.section-title {
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: -0.02em;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.5rem;
+  margin-top: 14px;
 }
 
-.section-subtitle {
-  color: var(--muted);
-  font-size: 1rem;
-  margin-bottom: 2.5rem;
-  max-width: 560px;
-}
-
-@media (max-width: 768px) {
-  .app-container {
-    padding: 5.5rem 1.1rem 2rem;
+@media (max-width: 900px) {
+  :root {
+    --section-pad: 64px;
+    --gutter: 20px;
   }
 
-  section {
-    padding: 2.75rem 0;
+  .section-split {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .section-title {
+    font-size: 32px;
   }
 }

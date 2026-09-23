@@ -1,8 +1,12 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import Reveal from '../Reveal/Reveal';
+import stagger from '../../utils/stagger';
+import { CV_URL, GITHUB_URL, LINKEDIN_URL } from '../../constants';
+import vitorPhoto from '../../assets/vitor.png';
 import './Hero.css';
 
 const CAREER_START = new Date('2023-02-01');
+const NAME_LINES = ['Vitor', 'Lavezzo'];
 
 const getUptime = () => {
   const now = new Date();
@@ -16,66 +20,122 @@ const getUptime = () => {
 };
 
 const Hero = () => {
+  const heroRef = useRef(null);
+  const cardRef = useRef(null);
+
+  // Spotlight follows the cursor across the header, and the ID card tilts
+  // toward it. Both only move in direct response to the pointer, so they stay
+  // on even when the visitor asks for less motion.
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return undefined;
+
+    const onMove = (event) => {
+      const rect = hero.getBoundingClientRect();
+      hero.style.setProperty('--x', `${event.clientX - rect.left}px`);
+      hero.style.setProperty('--y', `${event.clientY - rect.top}px`);
+
+      const card = cardRef.current;
+      if (!card) return;
+      const cardRect = card.getBoundingClientRect();
+      const dx = (event.clientX - (cardRect.left + cardRect.width / 2)) / rect.width;
+      const dy = (event.clientY - (cardRect.top + cardRect.height / 2)) / rect.height;
+      card.style.transform = `perspective(700px) rotateY(${dx * 14}deg) rotateX(${-dy * 14}deg)`;
+    };
+
+    const onLeave = () => {
+      if (cardRef.current) cardRef.current.style.transform = '';
+    };
+
+    hero.addEventListener('mousemove', onMove);
+    hero.addEventListener('mouseleave', onLeave);
+    return () => {
+      hero.removeEventListener('mousemove', onMove);
+      hero.removeEventListener('mouseleave', onLeave);
+      onLeave();
+    };
+  }, []);
+
   return (
-    <div className="hero-container">
-      <motion.div
-        className="hero-content"
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
-      >
-        <div className="hero-statusbar">
-          <span className="status-item status-live">
-            <span className="status-dot" />
-            disponível para novos projetos
-          </span>
-          <span className="status-divider" />
-          <span className="status-item">uptime: {getUptime()}</span>
-          <span className="status-divider" />
-          <span className="status-item">build: 2026.08</span>
+    <header id="home" ref={heroRef} className="hero">
+      <div className="hero-dots" aria-hidden="true" />
+      <div className="hero-glow" aria-hidden="true" />
+
+      <Reveal className="hero-status">
+        <span className="hero-status-live">
+          <span className="hero-status-dot" />
+          disponível para novos projetos
+        </span>
+        <span>SP · Brasil — {getUptime()} de carreira</span>
+      </Reveal>
+
+      <div className="hero-main">
+        <div>
+          <h1 className="hero-name" aria-label="Vitor Lavezzo.">
+            {NAME_LINES.map((line, lineIndex) => {
+              const offset = NAME_LINES.slice(0, lineIndex).reduce((n, l) => n + l.length, 0);
+              return (
+                <span key={line} className="hero-name-line" aria-hidden="true">
+                  {[...line].map((char, i) => (
+                    <span
+                      key={`${char}-${i}`}
+                      className="hero-letter"
+                      style={{ animationDelay: `${150 + (offset + i) * 45}ms` }}
+                    >
+                      {char}
+                    </span>
+                  ))}
+                  {lineIndex === NAME_LINES.length - 1 && (
+                    <span className="hero-name-dot">.</span>
+                  )}
+                </span>
+              );
+            })}
+          </h1>
         </div>
 
-        <h1 className="hero-name">Vitor Lavezzo</h1>
-        <p className="hero-role">
-          <span className="hero-role-key">role</span>
-          <span className="hero-role-colon">:</span> desenvolvedor full-stack &amp; integração de sistemas
-        </p>
-        <p className="hero-bio">
-          Construo pontes confiáveis entre sistemas: integrações, automações e pipelines de dados
-          que precisam simplesmente funcionar. Stack principal em Python e Golang, com bancos de
-          dados relacionais e não relacionais no dia a dia.
-        </p>
-        <div className="hero-buttons">
-          <a href="Vitor Lavezzo - CV.pdf" download className="btn btn-primary">
+        {/* The reveal owns opacity/translate on the outer node; the tilt owns
+            transform on the inner one, so the two never fight over `transform`. */}
+        <Reveal className="hero-card-reveal">
+          <div ref={cardRef} className="hero-card">
+            <div className="hero-card-frame">
+              <img src={vitorPhoto} alt="Vitor Lavezzo" />
+            </div>
+            <div className="hero-card-meta">
+              <span>ID · VL-2023</span>
+              <span className="hero-card-meta-dot">●</span>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+
+      <div className="hero-meta">
+        <Reveal className="hero-role" delay={stagger(0)}>
+          <span className="hero-role-key">role:</span> desenvolvedor full-stack
+          <br />
+          &amp; integração de sistemas
+        </Reveal>
+
+        <Reveal as="p" className="hero-bio" delay={stagger(1)}>
+          Construo pontes confiáveis entre sistemas: integrações, automações e pipelines de
+          dados que precisam simplesmente funcionar. Python e Golang no dia a dia.
+        </Reveal>
+
+        <Reveal className="hero-cta" delay={stagger(2)}>
+          <a href={CV_URL} download className="hero-cv">
             Download CV
           </a>
-          <a href="https://github.com/VitorApLavezzo" target="_blank" rel="noreferrer" className="btn btn-outline">
-            GitHub
-          </a>
-          <a href="https://linkedin.com/in/vitor-aparecido-lavezzo" target="_blank" rel="noreferrer" className="btn btn-outline">
-            LinkedIn
-          </a>
-        </div>
-      </motion.div>
-
-      <motion.div
-        className="hero-id-card"
-        initial={{ opacity: 0, scale: 0.94 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
-      >
-        <div className="hero-id-frame">
-          <img
-            src="https://vitoraplavezzo.github.io/Portifolio/1675897493970-removebg-preview.png"
-            alt="Vitor Lavezzo"
-          />
-        </div>
-        <div className="hero-id-meta">
-          <span>VITOR LAVEZZO</span>
-          <span>SP · BRASIL</span>
-        </div>
-      </motion.div>
-    </div>
+          <div className="hero-socials">
+            <a href={GITHUB_URL} target="_blank" rel="noreferrer">
+              GitHub ↗
+            </a>
+            <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+              LinkedIn ↗
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </header>
   );
 };
 

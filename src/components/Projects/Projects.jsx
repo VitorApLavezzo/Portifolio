@@ -1,12 +1,12 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import Reveal from '../Reveal/Reveal';
+import stagger from '../../utils/stagger';
+import SectionLabel from '../SectionLabel/SectionLabel';
 import './Projects.css';
 
-const projects = [
+const PROJECTS = [
   {
     name: 'Hub3D',
     status: 'sistema em produção',
-    statusState: 'live',
     period: '2025 — atual',
     description:
       'ERP para microempresas de impressão 3D: catálogo público, orçamentos com precificação por custo real, kanban de produção, controle de estoque de filamento e financeiro completo, tudo em um único painel.',
@@ -17,7 +17,6 @@ const projects = [
   {
     name: 'AnomalyDetect',
     status: 'TCC · em desenvolvimento',
-    statusState: 'live',
     period: '2025 — 2026',
     description:
       'Monitoramento de computadores com detecção de anomalias em duas camadas (heurísticas + machine learning por máquina) e explicações em linguagem simples geradas por IA, com painel em tempo real via WebSocket.',
@@ -27,67 +26,54 @@ const projects = [
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
-
 const Projects = () => (
-  <div className="projects-container">
-    <span className="section-eyebrow">~/projects</span>
-    <h2 className="section-heading">Sistemas construídos</h2>
-    <p className="section-subtitle">
-      Projetos de maior escopo — do desenho do banco de dados à interface final.
-    </p>
+  <section id="projects" className="section">
+    <div className="section-inner">
+      <div className="projects-head">
+        <div>
+          <SectionLabel text="02 / PROJETOS" />
+          <Reveal as="h2" className="section-title">
+            Sistemas construídos
+          </Reveal>
+        </div>
+        <p className="projects-lede">Do desenho do banco de dados à interface final.</p>
+      </div>
 
-    <motion.div
-      className="projects-list"
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-60px' }}
-    >
-      {projects.map((project) => (
-        <motion.article key={project.name} className="project-card panel" variants={cardVariants}>
-          <header className="project-header">
-            <div className="project-title-row">
-              <h3 className="project-name">{project.name}</h3>
-              <span className={`project-status project-status--${project.statusState}`}>
+      {PROJECTS.map((project, i) => (
+        <Reveal as="article" key={project.name} className="project" delay={stagger(i)}>
+          <span className="project-num">{String(i + 1).padStart(2, '0')}</span>
+
+          <div>
+            <h3 className="project-name">{project.name}</h3>
+            <div className="project-meta">
+              <span className="project-status">
                 <span className="project-status-dot" />
                 {project.status}
               </span>
+              <span>{project.period}</span>
             </div>
-            <span className="project-period">{project.period}</span>
-          </header>
-
-          <p className="project-description">{project.description}</p>
-
-          <div className="project-stack">
-            {project.stack.map((tech) => (
-              <span key={tech} className="project-stack-tag">
-                {tech}
-              </span>
-            ))}
           </div>
 
-          <div className="project-footer">
+          <div className="project-body">
+            <p className="project-description">{project.description}</p>
+            <div className="project-stack">{project.stack.join('  /  ')}</div>
             {project.link ? (
-              <a href={project.link} target="_blank" rel="noreferrer" className="project-link">
-                {project.linkLabel} →
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noreferrer"
+                className="project-link"
+              >
+                {project.linkLabel} ↗
               </a>
             ) : (
-              <span className="project-link project-link--disabled">{project.linkLabel}</span>
+              <span className="project-nolink">{project.linkLabel}</span>
             )}
           </div>
-        </motion.article>
+        </Reveal>
       ))}
-    </motion.div>
-  </div>
+    </div>
+  </section>
 );
 
 export default Projects;

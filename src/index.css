@@ -3,9 +3,11 @@
 
 :root {
   font-family: var(--font-body);
-  line-height: 1.5;
+  /* Sem line-height global: o design define a entrelinha bloco a bloco
+     (1.6 na bio, 1.65 na descricao do projeto, .88 no nome). Um 1.5 herdado
+     engordava cada caixa de texto e somava ~62px na altura da pagina. */
   font-weight: 400;
-  color-scheme: light dark;
+  color-scheme: dark;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -38,11 +40,14 @@ button {
   outline-offset: 2px;
 }
 
+/* Nao desligamos o movimento em bloco. O regulador global de antes
+   (animation-duration: 0.01ms em *) apagava a entrada do nome, o pulso do
+   status e todas as transicoes — no Windows com "Efeitos de animacao"
+   desligado a pagina inteira ficava parada. A acomodacao agora e pontual e
+   fica onde o movimento realmente incomoda: a esteira roda bem mais devagar
+   (Marquee.jsx) e os reveals surgem sem deslizar (Reveal.jsx). */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  html {
+    scroll-behavior: auto;
   }
 }

@@ -8,7 +8,9 @@
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 10px;
-  --content-width: 1080px;
+  --content-width: 1280px;
+  --gutter: 32px;
+  --section-pad: 96px;
 
   /* Motion */
   --animation-speed-slow: 20s;
@@ -16,30 +18,45 @@
   --animation-speed-fast: 0.4s;
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
+  --marquee-duration: 38s;
 
-/* Dark mode — ink navy control panel (default identity) */
-.dark-mode {
+  /* Surfaces — ink navy control panel */
   --ink: #0b0f14;
+  --ink-2: #0e131a;
   --panel: #121821;
   --panel-2: #171f2a;
   --hairline: #232c38;
+
+  /* Text */
   --paper: #e9edf2;
+  --body: #b7c1cc;
   --muted: #8a97a6;
+  --dim: #5b6672;
+
+  /* Accent */
   --signal: #ff8a3d;
   --signal-strong: #ffa564;
+  --on-signal: #14100b;
   --pulse: #3ecf8e;
+  --grid-dot: #3a4656;
 }
 
-/* Light mode — same system, inverted surfaces */
+/* The design is dark-only, so the tokens above live on :root and no theme
+   class is required. This block is kept intact so a light toggle can be
+   restored by re-applying `.light-mode` to the wrapper — nothing sets it today. */
 .light-mode {
   --ink: #f4f6f8;
+  --ink-2: #eef1f4;
   --panel: #ffffff;
   --panel-2: #eef1f4;
   --hairline: #d9dee4;
   --paper: #10151c;
+  --body: #2d3742;
   --muted: #5b6672;
+  --dim: #8a97a6;
   --signal: #d9660c;
   --signal-strong: #b8540a;
+  --on-signal: #fff7f0;
   --pulse: #1e9e63;
+  --grid-dot: #c3ccd6;
 }
